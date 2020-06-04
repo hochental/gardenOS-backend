@@ -1,6 +1,7 @@
 package com.gardeos.gardenos.service;
 
 import com.gardeos.gardenos.entity.Client;
+import com.gardeos.gardenos.exception.RequestException;
 import com.gardeos.gardenos.repository.AdressRepository;
 import com.gardeos.gardenos.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,19 +20,19 @@ public class ClientService {
     AdressRepository adressRepository;
 
     public List<Client> getClients(){
-        List<Client> clientList = new ArrayList<Client>();
-        for(Client client: clientRepository.findAll()){
-            client.setAdressList(adressRepository.findAllByClientId(client.getId()));
-            clientList.add(client);
-        }
-        return clientList;
+            List<Client> clientList = new ArrayList<Client>();
+            for (Client client : clientRepository.findAll()) {
+                client.setAdressList(adressRepository.findAllByClientId(client.getId()));
+                clientList.add(client);
+            }
+            return clientList;
     }
 
-    public Client getClient(Long id){
+    public Client getClient(Long id) {
         return clientRepository.findById(id).orElse(null);
     }
 
-    public void removeClient(Client newClient){
+    public void removeClient(Client newClient) {
         adressRepository.deleteAll(adressRepository.findAllByClientId(newClient.getId()));
         clientRepository.delete(newClient);
     }
@@ -41,11 +42,11 @@ public class ClientService {
         clientRepository.deleteById(id);
     }
 
-    public void addClient(Client newClient){
+    public void addClient(Client newClient) {
         clientRepository.save(newClient);
     }
-
-
-
-
 }
+
+
+
+
