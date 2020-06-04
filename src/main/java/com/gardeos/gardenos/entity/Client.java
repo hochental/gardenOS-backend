@@ -1,5 +1,9 @@
 package com.gardeos.gardenos.entity;
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,18 +16,22 @@ public class Client {
     private Long id;
 
     @Column(name="name")
+    @NotNull(message = "Name cannot be null")
     private String name;
 
     @Column(name="surrname")
     private String surrname;
 
     @Column(name="email")
+    @Email(message = "Email should be valid")
     private String email;
 
     @Column(name="telephone_number")
+    @Pattern(regexp="(^$|[0-9]{9})")
     private String telephoneNumber;
 
     @Column(name="extra")
+    @Size(min = 10, max = 200, message = "Extra should be max 200")
     private String extra;
 
     @OneToMany(mappedBy = "adress",

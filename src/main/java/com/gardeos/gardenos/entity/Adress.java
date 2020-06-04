@@ -1,7 +1,9 @@
 package com.gardeos.gardenos.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sun.istack.NotNull;
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity(name="adress")
 public class Adress {
@@ -23,6 +25,7 @@ public class Adress {
     private Integer homeNumber;
 
     @Column(name="extra")
+    @Size(min = 10, max = 200, message = "Extra should be max 200")
     private String extra;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -70,10 +73,12 @@ public class Adress {
         this.extra = extra;
     }
 
+    @JsonIgnore
     public Client getClient() {
         return client;
     }
 
+    @JsonProperty
     public void setClient(Client client) {
         this.client = client;
     }

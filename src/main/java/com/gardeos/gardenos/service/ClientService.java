@@ -18,15 +18,34 @@ public class ClientService {
     @Autowired
     AdressRepository adressRepository;
 
-    public List<Client> getClient(){
+    public List<Client> getClients(){
         List<Client> clientList = new ArrayList<Client>();
-
         for(Client client: clientRepository.findAll()){
             client.setAdressList(adressRepository.findAllByClientId(client.getId()));
             clientList.add(client);
         }
-
         return clientList;
     }
+
+    public Client getClient(Long id){
+        return clientRepository.findById(id).orElse(null);
+    }
+
+    public void removeClient(Client newClient){
+        adressRepository.deleteAll(adressRepository.findAllByClientId(newClient.getId()));
+        clientRepository.delete(newClient);
+    }
+
+    public void removeClient(Long id) {
+        adressRepository.deleteAll(adressRepository.findAllByClientId(id));
+        clientRepository.deleteById(id);
+    }
+
+    public void addClient(Client newClient){
+        clientRepository.save(newClient);
+    }
+
+
+
 
 }
