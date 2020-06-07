@@ -45,6 +45,14 @@ public class AdressRest {
         return "operation done";
     }
 
+    @PostMapping("/client-full")
+    String addClientWithAdress(@RequestBody Adress adress){
+        System.out.println(adress);
+        System.out.println(adress.getClient());
+        adressService.addClientWithAdress(adress);
+        return "operation done";
+    }
+
     @DeleteMapping("/adress/{id}")
     public String deleteAdress(@PathVariable(name = "id") Long id){
         adressService.deleteAdress(id);

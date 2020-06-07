@@ -61,4 +61,10 @@ public class AdressService {
         updatedAdress.setId(id);
         adressRepository.save(updatedAdress);
     }
+
+    public void addClientWithAdress(Adress adress) {
+        Client client = adress.getClient();
+        clientRepository.save(client);
+        adressRepository.save(adress);
+    }
 }
