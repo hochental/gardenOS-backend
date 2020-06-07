@@ -37,7 +37,9 @@ public class ClientService {
     }
 
     public Client getClient(Long id) {
-        return clientRepository.findById(id).orElse(null);
+        Client client = clientRepository.findById(id).orElse(null);
+        client.setAdressList(adressRepository.findAllByClientId(client.getId()));
+        return client;
     }
 
     public List<Client> getPagginationClient(Integer pageNo, Integer pageSize, String sortBy)

@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 public class Adress {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Long id;
 
@@ -25,7 +25,7 @@ public class Adress {
     private Integer homeNumber;
 
     @Column(name="extra")
-    @Size(min = 10, max = 200, message = "Extra should be max 200")
+    @Size(min = 0, max = 400, message = "Extra should be max 200")
     private String extra;
 
     @ManyToOne(fetch = FetchType.LAZY)

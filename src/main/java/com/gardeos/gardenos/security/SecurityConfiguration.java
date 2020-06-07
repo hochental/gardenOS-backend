@@ -31,7 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/rest/**").hasRole("ADMIN")
+                /*.antMatchers("/rest/**").hasRole("ADMIN")*/
                 .and()
                 .formLogin().defaultSuccessUrl("http://localhost:4200/");
     }

@@ -23,7 +23,7 @@ public class ClientRest {
     }
 
     @GetMapping("/client/{id}")
-    public Client getAllAdresses(@PathVariable(name = "id") Long id){
+    public Client getClient(@PathVariable(name = "id") Long id){
         return clientService.getClient(id);
     }
 
