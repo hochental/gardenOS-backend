@@ -40,29 +40,26 @@ public class AdressRest {
     }
 
     @PostMapping("/adress")
-    public String addAdress(@RequestBody Adress adress){ //need to add ID of Client <gonna be igonored with get>
+    public void addAdress(@RequestBody Adress adress){ //need to add ID of Client <gonna be igonored with get>
         adressService.addAdress(adress);
-        return "operation done";
     }
 
     @PostMapping("/client-full")
-    String addClientWithAdress(@RequestBody Adress adress){
+    void addClientWithAdress(@RequestBody Adress adress){
         System.out.println(adress);
         System.out.println(adress.getClient());
         adressService.addClientWithAdress(adress);
-        return "operation done";
     }
 
     @DeleteMapping("/adress/{id}")
-    public String deleteAdress(@PathVariable(name = "id") Long id){
+    public void deleteAdress(@PathVariable(name = "id") Long id){
         adressService.deleteAdress(id);
-        return "operation done";
     }
 
     @PutMapping("/adress/{id}")
-    public String adressUpdate(@RequestBody Adress adressToUpdate, @RequestParam(name = "id") Long id){
+    public void adressUpdate(@RequestBody Adress adressToUpdate, @PathVariable(name = "id") Long id){
+        System.out.println(adressToUpdate + " id: "+ id);
         adressService.adressUpdate(adressToUpdate, id);
-        return "operation done";
     }
 
 

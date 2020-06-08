@@ -57,7 +57,9 @@ public class AdressService {
     }
 
     public void adressUpdate(Adress adressToUpdate, Long id) {
+
         Adress updatedAdress = adressToUpdate;
+        updatedAdress.setClient(clientRepository.findById(adressRepository.findIdOfClient(id)).orElse(null));
         updatedAdress.setId(id);
         adressRepository.save(updatedAdress);
     }

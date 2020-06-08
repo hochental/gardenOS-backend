@@ -39,22 +39,24 @@ public class ClientRest {
         return new ResponseEntity<List<Client>>(list, headers, HttpStatus.OK);
     }
 
+    @GetMapping("/client")
+    public Boolean checkIfClientExist(@RequestBody Client newClient){
+        return clientService.checkIfClientExist(newClient);
+    }
+
     @PostMapping("/client")
-    String addClient(@RequestBody Client newClient){
+    void addClient(@RequestBody Client newClient){
         clientService.addClient(newClient);
-    return "operation done";
     }
 
     @DeleteMapping("/client")
-    String deleteClient(@RequestBody Client clientToRemove){
+    void deleteClient(@RequestBody Client clientToRemove){
         clientService.removeClient(clientToRemove);
-    return "operation done";
     }
 
     @DeleteMapping("/client/{id}")
-    String deleteClient(@PathVariable Long id){
+    void deleteClient(@PathVariable Long id){
         clientService.removeClient(id);
-        return "operation done";
     }
 
 }

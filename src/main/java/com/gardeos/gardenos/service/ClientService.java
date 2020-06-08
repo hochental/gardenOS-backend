@@ -74,6 +74,11 @@ public class ClientService {
     public void addClient(Client newClient) {
         clientRepository.save(newClient);
     }
+
+    public Boolean checkIfClientExist(Client newClient) {
+        return !clientRepository.findByEmail(newClient.getEmail()).isPresent()
+                && !clientRepository.findByTelephoneNumber(newClient.getTelephoneNumber()).isPresent();
+    }
 }
 
 
