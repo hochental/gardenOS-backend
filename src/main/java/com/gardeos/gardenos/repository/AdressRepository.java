@@ -12,4 +12,9 @@ public interface AdressRepository extends JpaRepository<Adress, Long> {
     @Query(value = "SELECT client_id FROM adress a WHERE a.id= :adressId",
             nativeQuery = true)
     Long findIdOfClient(@Param("adressId") Long adressId);
+
+    @Query(value = "SELECT id FROM adress a WHERE a.client_id= :clientId",
+            nativeQuery = true)
+    List<Long> findAllIdAdress(@Param("clientId") Long clientId);
+
 }

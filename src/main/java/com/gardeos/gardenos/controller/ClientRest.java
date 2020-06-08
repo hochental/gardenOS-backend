@@ -49,6 +49,11 @@ public class ClientRest {
         clientService.addClient(newClient);
     }
 
+    @PutMapping("/client/{id}")
+    void addClient(@RequestBody Client editedClient, @PathVariable Long id){
+        clientService.editClient(editedClient);
+    }
+
     @DeleteMapping("/client")
     void deleteClient(@RequestBody Client clientToRemove){
         clientService.removeClient(clientToRemove);

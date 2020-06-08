@@ -79,6 +79,11 @@ public class ClientService {
         return !clientRepository.findByEmail(newClient.getEmail()).isPresent()
                 && !clientRepository.findByTelephoneNumber(newClient.getTelephoneNumber()).isPresent();
     }
+
+    public void editClient(Client editedClient) {
+        editedClient.setAdressList(adressRepository.findAllByClientId(editedClient.getId()));
+        clientRepository.save(editedClient);
+    }
 }
 
 
