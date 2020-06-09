@@ -71,8 +71,8 @@ public class ClientService {
         clientRepository.deleteById(id);
     }
 
-    public void addClient(Client newClient) {
-        clientRepository.save(newClient);
+    public Client addClient(Client newClient) {
+        return clientRepository.save(newClient);
     }
 
     public Boolean checkIfClientExist(Client newClient) {
